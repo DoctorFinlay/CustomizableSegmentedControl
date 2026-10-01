@@ -103,27 +103,27 @@ extension CustomizableSegmentedControl {
             Button(action: action) {
                 content
                     .blendModeIfNotNil(contentBlendMode)
-                    .overlay {
+                    .overlay(alignment: .center, content: {
                         if let firstLevelOverlayBlendMode {
                             content
                                 .blendMode(firstLevelOverlayBlendMode)
                                 .accessibilityHidden(true)
                         }
-                    }
-                    .overlay {
+                    })
+                    .overlay(alignment: .center, content: {
                         if let highestLevelOverlayBlendMode {
                             content
                                 .blendMode(highestLevelOverlayBlendMode)
                                 .accessibilityHidden(true)
                         }
-                    }
-                    .background {
+                    })
+                    .background(alignment: .center, content: {
                         if isSelected {
                             selectionView
                                 .transition(.offset())
                                 .matchedGeometryEffect(id: backgroundID, in: namespaceID)
                         }
-                    }
+                    })
                     .animation(animation, value: isSelected)
             }
             .buttonStyle(SegmentButtonStyle(isPressed: $isPressed))
